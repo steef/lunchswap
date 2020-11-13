@@ -52,7 +52,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         <title>LunchSwap 😋</title>
     </head>
     <body>
-        <h2>Week 44 - Fill in your lunches 🍽</h2>
+        <h2>
+            <?php
+            $nextWeek = new DateTimeImmutable('next week');
+            $weekNumber = $nextWeek->format("W");
+
+            echo "Week $weekNumber - Fill in your lunches 🍽"
+            ?>
+        </h2>
         <a href="index.php">Click here to go back</a><br/><br/>
         <form action="lunches.php" method="post">
         <p>
