@@ -46,12 +46,17 @@ while($row = mysqli_fetch_array($result))
     $allergy = $row['allergy'] ?: "No";
     $lunchAt = $row['luch_at'];
 
+    if ($type === "meat_fish") {
+        $type = "Meat/Fish";
+    }
+    $mealType = ucfirst($type);
+
     $lunchAtDate = new DateTimeImmutable($lunchAt);
     $lunchDay = $lunchAtDate->format('l');
 
     echo "<tr>";
     echo "<td>{$name}</td>";
-    echo "<td>{$type}</td>";
+    echo "<td>{$mealType}</td>";
     echo "<td>{$allergy}</td>";
     echo "<td>{$lunchDay}</td>";
     echo "</tr>";
@@ -63,3 +68,4 @@ echo "    </body>
 
 // Close connection
 $conn->close();
+
