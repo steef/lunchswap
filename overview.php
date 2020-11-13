@@ -35,6 +35,9 @@ while($row = mysqli_fetch_array($result))
     $allergy = $row['allergy'];
     $lunchAt = $row['luch_at'];
 
+    $lunchAtDate = new DateTimeImmutable($lunchAt);
+    $lunchDay = $lunchAtDate->format('l');
+
     echo "<tr>";
     echo "<td>{$name}</td>";
     echo "<td>{$type}</td>";
