@@ -1,4 +1,5 @@
 <?php
+
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Create connection
@@ -43,6 +44,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Close connection
     $conn->close();
+
+    // Redirect broser
+    header("Location: /lunchswap/success.php");
+    exit();
 }
 
 ?>
