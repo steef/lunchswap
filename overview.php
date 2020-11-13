@@ -30,11 +30,16 @@ echo "<table border='1'>
 
 while($row = mysqli_fetch_array($result))
 {
+    $name = $row['name'];
+    $type = $row['type'];
+    $allergy = $row['allergy'];
+    $lunchAt = $row['luch_at'];
+
     echo "<tr>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['type'] . "</td>";
-    echo "<td>" . $row['allergy'] . "</td>";
-    echo "<td>" . $row['luch_at'] . "</td>";
+    echo "<td>{$name}</td>";
+    echo "<td>{$type}</td>";
+    echo "<td>{$allergy}</td>";
+    echo "<td>{$lunchDay}</td>";
     echo "</tr>";
 }
 echo "</table>";
