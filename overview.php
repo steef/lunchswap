@@ -32,7 +32,7 @@ while($row = mysqli_fetch_array($result))
 {
     $name = $row['name'];
     $type = $row['type'];
-    $allergy = $row['allergy'];
+    $allergy = $row['allergy'] ?: "No";
     $lunchAt = $row['luch_at'];
 
     $lunchAtDate = new DateTimeImmutable($lunchAt);
