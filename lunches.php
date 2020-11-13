@@ -20,11 +20,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Get lunch info
     $lunches = [
-        'monday'    => $_POST['monday'],
-        'tuesday'   => $_POST['tuesday'],
-        'wednesday' => $_POST['wednesday'],
-        'thursday'  => $_POST['thursday'],
-        'friday'    => $_POST['friday']
+        'next week monday'    => $_POST['monday'],
+        'next week tuesday'   => $_POST['tuesday'],
+        'next week wednesday' => $_POST['wednesday'],
+        'next week thursday'  => $_POST['thursday'],
+        'next week friday'    => $_POST['friday']
     ];
 
     // Save to database
