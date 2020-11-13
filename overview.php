@@ -19,6 +19,17 @@ $dateNextWeek = $nextWeek->format('Y-m-d');
 $sql = "SELECT name, type, allergy, luch_at FROM lunches WHERE luch_at >= '{$dateNextWeek}' ORDER BY luch_at";
 $result = $conn->query($sql);
 
+$nextWeek = new DateTimeImmutable('next week');
+$weekNumber = $nextWeek->format("W");
+
+echo "<html>
+<head>
+    <title>LunchSwap 😋</title>
+</head>
+<body>
+    <h2>Week $weekNumber - Lunch overview 📝</h2>
+    <a href=\"index.php\">Click here to go back</a><br/><br/>";
+
 // Show results in table
 echo "<table border='1'>
 <tr>
