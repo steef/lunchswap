@@ -1,45 +1,25 @@
 <?php
 
-// Create connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lunchswap_db";
+include 'Db.php';
+include 'Template.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$db       = new Db();
+$template = new Template();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Get results
-$nextWeek = new DateTimeImmutable('next week');
+$nextWeek     = new DateTimeImmutable('next week');
 $dateNextWeek = $nextWeek->format('Y-m-d');
-$sql = "SELECT name, type, allergy, luch_at FROM lunches WHERE luch_at >= '{$dateNextWeek}' ORDER BY luch_at";
-$result = $conn->query($sql);
+$weekNumber   = $nextWeek->format("W");
 
-$nextWeek = new DateTimeImmutable('next week');
-$weekNumber = $nextWeek->format("W");
+$lunchData = [];
+$lunchData['Lunches']    = $db->getData('lunches', "luch_at >= '{$dateNextWeek}'", 'luch_at');
+$lunchData['weekNumber'] = $weekNumber;
+$lunchData['Authors']    = [
+    ['Name' => 'Steef'], ['Name' => 'Tiger']
+];
 
-echo "<html>
-<head>
-    <title>LunchSwap 😋</title>
-</head>
-<body>
-    <h2>Week $weekNumber - Lunch overview 📝</h2>
-    <a href=\"index.php\">Click here to go back</a><br/><br/>";
+echo $template->render('overview', $lunchData);
 
-// Show results in table
-echo "<table border='1'>
-<tr>
-<th>Name</th>
-<th>Lunch</th>
-<th>Allergy</th>
-<th>Day</th>
-</tr>";
-
-while($row = mysqli_fetch_array($result))
+/*foreach ($lunchData as $row)
 {
     $name = $row['name'];
     $type = $row['type'];
@@ -64,8 +44,4 @@ while($row = mysqli_fetch_array($result))
 echo "</table>";
 
 echo "    </body>
-</html>";
-
-// Close connection
-$conn->close();
-
+</html>";*/

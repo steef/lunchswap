@@ -3,10 +3,6 @@
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Create connection
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "lunchswap_db";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
